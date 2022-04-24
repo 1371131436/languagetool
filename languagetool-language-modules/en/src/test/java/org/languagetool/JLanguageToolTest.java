@@ -120,6 +120,21 @@ public class JLanguageToolTest {
       lt.disableRule("MORE_A_JJ");
       assertNoError("I can give you more a detailed description.", lt);
       assertOneError("I've go to go.", lt);
+      //CS304 (manually written) Issue link: https://github.com/languagetool-org/languagetool/issues/5537
+      assertOneError("There was strange another problem.",lt);
+      assertNoError("There was another strange problem.",lt);
+      assertOneError("I want to find reliable another friend.",lt);
+      assertNoError("I want to find another reliable friend.",lt);
+      assertOneError("Maybe we can find better another choice",lt);
+      assertNoError("Maybe we can find another better choice",lt);
+      lt.disableRule("ANOTHER_JJ");
+      assertNoError("There was strange another problem.",lt);
+      assertNoError("There was another strange problem.",lt);
+      assertNoError("I want to find reliable another friend.",lt);
+      assertNoError("I want to find another reliable friend.",lt);
+      assertNoError("Maybe we can find better another choice",lt);
+      assertNoError("Maybe we can find another better choice",lt);
+
       lt.disableCategory(Categories.TYPOS.getId());
       if (Premium.isPremiumVersion()) {
         assertOneError("I've go to go.", lt);
